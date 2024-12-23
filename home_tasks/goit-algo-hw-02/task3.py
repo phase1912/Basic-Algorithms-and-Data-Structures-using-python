@@ -1,18 +1,15 @@
 ﻿def is_cymetric(str: str):
     arr = []
 
+    brackets = { "(": ")", "{": "}", "[": "]" }
+
     for i in str:
-        if i == "(" or i == "{" or i == "[":
+        if i in brackets:
             arr.append(i)
 
         else:
-            if len(arr) > 0 and arr[len(arr) - 1] == "(" and i == ")":
-                arr.pop()
-
-            if len(arr) > 0 and arr[len(arr) - 1] == "{" and i == "}":
-                arr.pop()
-
-            if len(arr) > 0 and arr[len(arr) - 1] == "[" and i == "]":
+            last = last_elem(arr)
+            if last is not None and brackets[last] == i:
                 arr.pop()
 
     if len(arr) > 0:
@@ -20,10 +17,18 @@
 
     return True
 
+def last_elem(arr):
+    if len(arr) > 0:
+        return arr[len(arr) - 1]
+
+    return None
+
 def main():
     strs = ["( ){[ 1 ]( 1 + 3 )( ){ }}",
             "( 23 ( 2 - 3);",
-            "( 11 }"]
+            "( 11 }",
+            "{}{}()((([{}])))",
+    ")("]
 
     for i in strs:
         if is_cymetric(i):
