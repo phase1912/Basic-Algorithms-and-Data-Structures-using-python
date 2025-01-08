@@ -24,4 +24,17 @@ def draw_snowflake(order, size=300):
 
     window.mainloop()
 
-draw_snowflake(3)
+def main():
+    try:
+        level = int(input("Input level:"))
+
+        if level <= 0:
+            raise Exception("not correct input")
+
+        draw_snowflake(level)
+    except Exception as e:
+        print(e)
+
+if __name__ == "__main__":
+    main()
+
