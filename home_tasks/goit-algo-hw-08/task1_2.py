@@ -1,24 +1,34 @@
 ﻿import heapq
 
 def calculate_costs(heap):
-    arr = []
-    while bool(heap):
-        val = heapq.heappop(heap)
-        val2 = 0
-
-        if len(arr) == 0:
-            val2 = heapq.heappop(heap)
-        else:
-            val2 = arr[len(arr) - 1]
-
-        sum = val + val2
-
-        arr.append(sum)
-
     sum = 0
+    while len(heap) > 1:
+        val = heapq.heappop(heap)
+        val2 = heapq.heappop(heap)
 
-    for i in arr:
-        sum += i
+        result = val + val2 
+        sum += result
+
+        heapq.heappush(heap, result)
+
+    # arr = []
+    # while bool(heap):
+    #     val = heapq.heappop(heap)
+    #     val2 = 0
+
+    #     if len(arr) == 0:
+    #         val2 = heapq.heappop(heap)
+    #     else:
+    #         val2 = arr[len(arr) - 1]
+
+    #     sum = val + val2
+
+    #     arr.append(sum)
+
+    # sum = 0
+
+    # for i in arr:
+    #     sum += i
 
     return sum
 
